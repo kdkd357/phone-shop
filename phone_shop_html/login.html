@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phone Shop - Log in / Register</title>
+  <style>
+    body{font-family: Arial, sans-serif;background:#f6f6f6;margin:0;color:#111;}
+    .wrap{max-width:420px;margin:48px auto;background:white;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+    .tabs{display:flex;gap:8px;margin-bottom:12px;}
+    .tabs button{flex:1;padding:10px;border-radius:6px;border:1px solid #eee;background:#fafafa;cursor:pointer;}
+    .tabs button.active{background:#fff;border-color:#ccc;}
+    .form{display:flex;flex-direction:column;gap:8px;}
+    .form input{padding:10px;border:1px solid #ddd;border-radius:6px;}
+    .form button{padding:10px;border-radius:6px;border:0;background:#0a74ff;color:white;cursor:pointer;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="tabs">
+      <button id="tab-login" class="active">log in</button>
+      <button id="tab-register">register</button>
+    </div>
+
+    <!-- log in -->
+    <form id="login-form" class="form" onsubmit="event.preventDefault(); doLogin();">
+      <input id="login-username" placeholder="Account / Email" required>
+      <input id="login-password" type="password" placeholder="password" required>
+      <button type="submit">log in</button>
+    </form>
+
+    <!-- register -->
+    <form id="register-form" class="form" style="display:none" onsubmit="event.preventDefault(); doRegister();">
+      <input id="reg-username" placeholder="account" required>
+      <input id="reg-password" type="password" placeholder="password" required>
+      <button type="submit">register</button>
+    </form>
+  </div>
+
+  <script>
+    // Switch the tab
+    document.getElementById('tab-login').addEventListener('click', ()=>{ document.getElementById('tab-login').classList.add('active'); document.getElementById('tab-register').classList.remove('active'); document.getElementById('login-form').style.display='block'; document.getElementById('register-form').style.display='none'; });
+    document.getElementById('tab-register').addEventListener('click', ()=>{ document.getElementById('tab-register').classList.add('active'); document.getElementById('tab-login').classList.remove('active'); document.getElementById('register-form').style.display='block'; document.getElementById('login-form').style.display='none'; });
+
+    // log in/register
+    function doRegister(){
+      const user = document.getElementById('reg-username').value;
+      const pwd = document.getElementById('reg-password').value;
+     
+      alert('account: '+user);
+      // Automatically return to login
+      document.getElementById('tab-login').click();
+      document.getElementById('login-username').value = user;
+    }
+
+    function doLogin(){
+      const user = document.getElementById('login-username').value;
+      const pwd = document.getElementById('login-password').value;
+      
+      alert('successful: '+user);
+      location.href='index.html';
+    }
+  </script>
+</body>
+</html>

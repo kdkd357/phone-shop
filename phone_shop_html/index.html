@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phone Shop - homepage</title>
+  <!-- CSS placeholder: put your CSS in styles.css or inside <style> below -->
+  <style>
+  /* Simple global style (can be modified in the external styles.css) */
+  body{font-family: Arial, sans-serif;margin:0;color:#111;background:#fff;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid #eee;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand h1{margin:0;font-size:20px;color:#ff6600;} /* phone - shop title */
+  .search-area{display:flex;align-items:center;gap:8px;}
+  .search-area input[type="search"]{padding:8px 12px;border-radius:20px;border:1px solid #ddd;width:420px;}
+  .actions{display:flex;gap:12px;align-items:center;}
+  .nav-cats{display:flex;gap:8px;padding:12px 18px;border-bottom:1px solid #f2f2f2;background:#fafafa;}
+  .nav-cats button{padding:8px 14px;border-radius:20px;border:1px solid #eee;background:white;cursor:pointer;}
+  .nav-cats button.active{background:#ff6600;color:white;border-color:#ff6600;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;padding:18px;}
+  .card{border:1px solid #eee;border-radius:8px;padding:8px;background:white;overflow:hidden;}
+  .card img{width:100%;height:180px;object-fit:cover;display:block;cursor:pointer;}
+  .card .meta{padding:8px 6px;}
+  .card .name{font-weight:600;margin-bottom:6px;}
+  .card .price{color:#e85d3a;font-weight:700;}
+  /* Footer note */
+  .footer{padding:18px;text-align:center;color:#777;border-top:1px solid #f3f3f3;}
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <h1 id="site-title">phone—shop</h1>
+    </div>
+
+    <div class="search-area">
+      <!-- Search box (to be enabled by JS later) -->
+      <input id="search-input" type="search" placeholder="Search for the model or brand of your mobile phone...." aria-label="Search">
+      <button id="search-btn"></Search></button>
+    </div>
+
+    <div class="actions">
+      <!-- Shopping cart & Login buttons are placeholders -->
+      <button id="cart-btn">cart(0)</button>
+      <button id="login-btn">Log in</button>
+    </div>
+  </header>
+
+  <!-- Brand Classification -->
+  <nav class="nav-cats" aria-label="Brand Classification">
+    <!-- After clicking different buttons, the page will filter the corresponding brands through JavaScript (this will be implemented later) -->
+    <button class="brand-filter active" data-brand="all">all</button>
+    <button class="brand-filter" data-brand="apple">apple</button>
+    <button class="brand-filter" data-brand="samsung">samsung</button>
+    <button class="brand-filter" data-brand="xiaomi">xiaomi</button>
+    <button class="brand-filter" data-brand="huawei">huawei</button>
+  </nav>
+
+  <!-- Mobile phone image grid -->
+  <main class="grid" id="product-grid">
+    <!-- All the images have the "id" and "data-brand" tags, which are useful for subsequent JavaScript control. -->
+    <article class="card" data-brand="apple">
+      <a href="product.html">
+        <img id="apple 17promax" src="photo/apple 17promax.jpg" alt="apple 17promax">
+      </a>
+      <div class="meta">
+        <div class="name">apple 17promax</div>
+        <div class="price">¥5999</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="product.html">
+        <img id="apple 17" src="photo/apple 17.jpg" alt="apple 17"></a>
+      <div class="meta">
+        <div class="name">apple 17</div>
+        <div class="price">¥3899</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="xiaomi">
+      <a href="product.html"><img id="huawei mate70ultra" src="photo/huawei mate70 ultra.jpg" alt="huawei mate70ultra"></a>
+      <div class="meta">
+        <div class="name">huawei mate70ultra</div>
+        <div class="price">¥4599</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="huawei">
+      <a href="product.html"><img id="huawei mate70" src="photo/huawei mate70.jpg" alt="huawei mate70"></a>
+      <div class="meta">
+        <div class="name">huawei mate70</div>
+        <div class="price">¥2999</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="apple">
+      <a href="product.html"><img id="samsung s24" src="photo/samsung s24.jpg" alt="samsung s24"></a>
+      <div class="meta">
+        <div class="name">samsung s24</div>
+        <div class="price">¥3299</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="samsung s24ultra"><img id="img-samsung-2" src="photo/samsung s24ultra.jpg" alt="samsung s24ultra"></a>
+      <div class="meta">
+        <div class="name">samsung s24ultra</div>
+        <div class="price">¥4899</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="xiaomi 14"><img id="xiaomi 14" src="photo/xiaomi 14.jpg" alt="xiaomi 14"></a>
+      <div class="meta">
+        <div class="name">xiaomi 14</div>
+        <div class="price">¥2899</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="xiaomi 14ultra"><img id="xiaomi 14ultra" src="photo/xiaomi 14ultra.jpg" alt="xiaomi 14ultra"></a>
+      <div class="meta">
+        <div class="name">xiaomi 14ultra</div>
+        <div class="price">¥4299</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="apple 16"><img id="apple 16" src="photo/apple 16.jpg" alt="apple 16"></a>
+      <div class="meta">
+        <div class="name">apple 16</div>
+        <div class="price">¥3899</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="apple 16promax"><img id="apple 16promax" src="photo/apple 16promax.jpg" alt="apple 16promax"></a>
+      <div class="meta">
+        <div class="name">apple 16promax</div>
+        <div class="price">¥4899</div>
+      </div>
+    </article>
+
+
+    <article class="card" data-brand="samsung">
+      <a href="huawei mate80"><img id="huawei mate80" src="photo/huawei mate80.jpg" alt="huawei mate80"></a>
+      <div class="meta">
+        <div class="name">huawei mate80</div>
+        <div class="price">¥3199</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="huawei mate80ultra"><img id="huawei mate80ultra" src="photo/huawei mate80ultra.jpg" alt="huawei mate80ultra"></a>
+      <div class="meta">
+        <div class="name">huawei mate80ultra</div>
+        <div class="price">¥4599</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="samsung s25"><img id="samsung s25" src="photo/samsung s25.jpg" alt="samsung s25"></a>
+      <div class="meta">
+        <div class="name">samsung s25</div>
+        <div class="price">¥4699</div>
+      </div>
+    </article>
+
+
+    <article class="card" data-brand="samsung">
+      <a href="samsung s25ultra"><img id="img-samsung-2" src="photo/samsung s25ultra.jpg" alt="samsung s25ultra"></a>
+      <div class="meta">
+        <div class="name">samsung s25ultra</div>
+        <div class="price">¥6299</div>
+      </div>
+    </article>
+
+
+    <article class="card" data-brand="samsung">
+      <a href="xiaomi 15"><img id="xiaomi 15" src="photo/xiaomi 15.jpg" alt="xiaomi 15"></a>
+      <div class="meta">
+        <div class="name">xiaomi 15</div>
+        <div class="price">¥2299</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="xiaomi 15ultra"><img id="xiaomi 15ultra" src="photo/xiaomi 15ultra.jpg" alt="xiaomi 15ultra"></a>
+      <div class="meta">
+        <div class="name">xiaomi 15ultra</div>
+        <div class="price">¥2699</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="apple 15"><img id="apple 15" src="photo/apple 15.jpg" alt="apple 15"></a>
+      <div class="meta">
+        <div class="name">apple 15</div>
+        <div class="price">¥2999</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="apple 15promax"><img id="apple 15promax" src="photo/apple 15promax.jpg" alt="apple 15promax"></a>
+      <div class="meta">
+        <div class="name">apple 15promax</div>
+        <div class="price">¥3799</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="huawei p70"><img id="huawei p70" src="photo/huawei p70.jpg" alt="huawei p70"></a>
+      <div class="meta">
+        <div class="name">huawei p70</div>
+        <div class="price">¥2499</div>
+      </div>
+    </article>
+
+
+    <article class="card" data-brand="samsung">
+      <a href="huawei p70pro"><img id="huawei p70pro" src="photo/huawei p70pro.jpg" alt="huawei p70pro"></a>
+      <div class="meta">
+        <div class="name">huawei p70pro</div>
+        <div class="price">¥3088</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="samsung w25"><img id="samsung w25" src="photo/samsung w25.jpg" alt="samsung w25"></a>
+      <div class="meta">
+        <div class="name">samsung w25</div>
+        <div class="price">¥6899</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="samsung w26"><img id="samsung w26" src="photo/samsung w26.jpg" alt="samsung w26"></a>
+      <div class="meta">
+        <div class="name">samsung w26</div>
+        <div class="price">¥7899</div>
+      </div>
+    </article>
+
+
+    <article class="card" data-brand="samsung">
+      <a href="xiaomi 17"><img id="xiaomi 17" src="photo/xiaomi 17.jpg" alt="xiaomi 17"></a>
+      <div class="meta">
+        <div class="name">xiaomi 17</div>
+        <div class="price">¥2999</div>
+      </div>
+    </article>
+
+    <article class="card" data-brand="samsung">
+      <a href="xiaomi 17ultra"><img id="xiaomi 17ultra" src="photo/xiaomi 17ultra.jpg" alt="xiaomi 17ultra"></a>
+      <div class="meta">
+        <div class="name">xiaomi 17ultra</div>
+        <div class="price">¥3599</div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer"> phone—shop</footer>
+
+  <script>
+  // Brand filtering
+  document.querySelectorAll('.brand-filter').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.brand-filter').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const brand = btn.dataset.brand;
+      document.querySelectorAll('#product-grid .card').forEach(card=>{
+        if(brand === 'all' || card.dataset.brand === brand) card.style.display = '';
+        else card.style.display = 'none';
+      });
+    });
+  });
+
+  // Search button placeholder
+  document.getElementById('search-btn').addEventListener('click', ()=>{
+    alert('The search function will be implemented using JavaScript in the later stage. For now, this is a placeholder. demo');
+  });
+
+  // Shopping cart and login redirect placeholder
+  document.getElementById('cart-btn').addEventListener('click', ()=> location.href='cart.html');
+  document.getElementById('login-btn').addEventListener('click', ()=> location.href='login.html');
+  </script>
+</body>
+</html>
