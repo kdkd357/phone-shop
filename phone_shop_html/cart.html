@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart - phone-shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Page wrapper -->
+  <div class="cart-page">
+
+    <!-- Cart card -->
+    <div class="cart-container">
+
+      <!-- Page title -->
+      <h1 class="cart-title">cart</h1>
+      <p class="cart-desc">
+        This is a simple shopping cart page example.
+        Quantity change and payment cannot work in pure HTML.
+      </p>
+
+      <!-- Cart table -->
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>product</th>
+            <th>unit price</th>
+            <th>quantity</th>
+            <th>subtotal</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>phone A</td>
+            <td>¥2399</td>
+            <td>1</td>
+            <td>¥2399</td>
+            <td><a href="#">delete</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Total -->
+      <div class="cart-total">
+        total: <span>¥2399</span>
+      </div>
+
+      <!-- Action button -->
+      <div class="cart-actions">
+        <button class="btn-primary">pay</button>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
