@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phone Shop - Product Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="product-page">
+    <div class="product-detail">
+      <h1 class="site-title">phone—shop</h1>
+      <a href="index.html" class="back-link">back homepage</a>
+      <h2 class="detail-title">Product Details</h2>
+
+      <div class="product-layout">
+        <div class="product-info">
+          <p id="product-name" class="product-name">Product name</p>
+          <p id="product-price" class="product-price">Price</p>
+
+          <h3 class="spec-title">Specifications</h3>
+          <ul id="product-specs" class="product-specs"></ul>
+
+          <div class="product-actions">
+            <button class="btn-secondary" onclick="addToCart()">Add to shopping cart</button>
+            <button class="btn-primary" onclick="buyNow()">Buy immediately</button>
+          </div>
+        </div>
+
+        <div class="product-image-wrap">
+          <img id="product-image" src="" alt="" class="product-image" width="300">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="products-data.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("product");
+
+    
+    if (products && products[key]) {
+      const product = products[key];
+      document.getElementById("product-name").innerText = product.name;
+      document.getElementById("product-price").innerText = product.price;
+      document.getElementById("product-image").src = product.image;
+      document.getElementById("product-image").alt = product.name;
+
+      const specsList = document.getElementById("product-specs");
+      specsList.innerHTML = "";
+      if(product.specs) {
+          for (let spec in product.specs) {
+            const li = document.createElement("li");
+            li.innerText = spec + ": " + product.specs[spec];
+            specsList.appendChild(li);
+          }
+      }
+    }
+
+   
+    function addToCart() {
+      if (!key || !products[key]) {
+        alert("Product Error!");
+        return;
+      }
+      let cart = JSON.parse(localStorage.getItem("mySimulatedCart")) || {};
+      if (cart[key]) {
+        cart[key]++;
+      } else {
+        cart[key] = 1;
+      }
+      localStorage.setItem("mySimulatedCart", JSON.stringify(cart));
+      alert("Added to cart successfully!");
+    }
+
+    function buyNow() {
+        addToCart();
+        window.location.href = "cart.html";
+    }
+  </script>
+</body>
+</html>

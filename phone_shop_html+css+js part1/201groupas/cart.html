@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart - phone-shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="cart-page">
+    <div class="cart-container">
+      <h1 class="cart-title">cart</h1>
+      <p class="cart-desc">
+        <a href="index.html" style="color: inherit; text-decoration: underline;">&larr; Back to Shop</a>
+      </p>
+
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>product</th>
+            <th>unit price</th>
+            <th>quantity</th>
+            <th>subtotal</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody id="cart-body">
+        </tbody>
+      </table>
+
+      <div class="cart-total">
+        total: <span id="grand-total">¥0.00</span>
+      </div>
+
+      <div class="cart-actions">
+        <button class="btn-primary" onclick="pay()">pay</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="products-data.js"></script>
+
+  <script>
+    function renderCart() {
+      const cartBody = document.getElementById("cart-body");
+      const totalSpan = document.getElementById("grand-total");
+      let cart = JSON.parse(localStorage.getItem("mySimulatedCart")) || {};
+      let grandTotal = 0;
+      let html = "";
+
+      if (Object.keys(cart).length === 0) {
+        cartBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Your cart is empty.</td></tr>';
+        totalSpan.innerText = "¥0.00";
+        return;
+      }
+
+      for (let id in cart) {
+        let product = products[id]; 
+        if (!product) continue;
+        let qty = cart[id];
+        let priceNum = parseFloat(product.price.replace(/[^\d.]/g, ''));
+        let subtotal = priceNum * qty;
+        grandTotal += subtotal;
+
+        html += `
+          <tr>
+            <td><img src="${product.image}" width="40" style="vertical-align:middle;margin-right:5px;"> ${product.name}</td>
+            <td>${product.price}</td>
+            <td>
+              <button onclick="updateQty('${id}', -1)">-</button> 
+              ${qty} 
+              <button onclick="updateQty('${id}', 1)">+</button>
+            </td>
+            <td>¥${subtotal.toFixed(2)}</td>
+            <td><a href="#" onclick="removeItem('${id}')" style="color:red">delete</a></td>
+          </tr>
+        `;
+      }
+      cartBody.innerHTML = html;
+      totalSpan.innerText = "¥" + grandTotal.toFixed(2);
+    }
+
+    function updateQty(id, change) {
+      let cart = JSON.parse(localStorage.getItem("mySimulatedCart")) || {};
+      if (cart[id]) {
+        cart[id] += change;
+        if (cart[id] <= 0) delete cart[id];
+      }
+      localStorage.setItem("mySimulatedCart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(id) {
+      let cart = JSON.parse(localStorage.getItem("mySimulatedCart")) || {};
+      delete cart[id];
+      localStorage.setItem("mySimulatedCart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function pay() {
+      let cart = JSON.parse(localStorage.getItem("mySimulatedCart")) || {};
+      if (Object.keys(cart).length === 0) return alert("Empty cart!");
+      localStorage.removeItem("mySimulatedCart");
+      window.location.href = "successful.html";
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
