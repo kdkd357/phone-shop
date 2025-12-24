@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - phone-shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+<div class="login-left">
+    <h1 class="login-brand">phone—shop</h1>
+    <div class="login-section">
+        <h2 class="login-title">Login to your account</h2>
+        <form class="login-form">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="button" class="btn-primary" onclick="handleLogin()">Log in</button>
+        </form>
+    </div>
+    <hr class="login-divider">
+    <div class="login-section">
+        <h2 class="login-title">New customer?</h2>
+        <button type="button" class="btn-secondary" onclick="handleRegister()">Register account</button>
+    </div>
+</div>
+<div class="login-right">
+    <div class="login-visual">
+        <h2>Welcome Back</h2>
+        <p>Experience the latest mobile technology with our exclusive collection.</p>
+    </div>
+</div>
+
+<script>
+    function handleLogin() {
+        const user = document.getElementById("username").value;
+        if (!user) {
+            alert("Please enter a username!");
+            return;
+        }
+        sessionStorage.setItem('isLoggedIn', 'true');
+        alert("Login Successful! Welcome, " + user);
+        window.location.href = "index.html";
+    }
+
+    function handleRegister() {
+        const user = document.getElementById("username").value;
+        if (!user) {
+            alert("Please enter a username to register!");
+        } else {
+            alert("Registration Successful for '" + user + "'! You can now log in with this account.");
+        }
+    }
+</script>
+</body>
+</html>
